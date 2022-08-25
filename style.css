@@ -101,8 +101,12 @@ input:invalid {
     height: 5vh;
     width: 80%;
     background-color: red;
-    border-radius: 1vh;
+    border-radius: 8px;
     margin-top: 10vh;
+}
+
+.smooth {
+    transition: all 1s linear;
 }
 
 @media screen and (max-width: 660px) {

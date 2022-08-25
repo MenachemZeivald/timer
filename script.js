@@ -1,33 +1,31 @@
 var frame = document.getElementById("frame");
 var res = document.getElementById("result");
+var line = document.getElementById("line");
 var sec, min, hours, lol, sum, sum1, sum2, sum3;
 
 function timer() {
     sec = document.getElementById("seco");
     min = document.getElementById("min");
     hours = document.getElementById("hours");
-    sum1 = Number(sec.value) ? Number(sec.value) : 0;
-    sum2 = Number(min.value) ? (min.value * 60) : 0;
-    sum3 = Number(hours.value) ? (sec.value * 3600) : 0;
-    sum = sum1 + sum2 + sum3;
-    clearInterval(lol);
-    lol = setInterval(countDown, 1000);
+    sum1 = Number(sec.value) ? Number(sec.value) : 0; // sum of seconds in sec.val
+    sum2 = Number(min.value) ? (min.value * 60) : 0; // sum of seconds in min.val
+    sum3 = Number(hours.value) ? (sec.value * 3600) : 0; // sum of seconds in hours.val
+    sum = sum1 + sum2 + sum3; // // sum of all seconds
+    clearInterval(lol); // just to fix if the user submit twice
+    lol = setInterval(countDown, 1000); // the main func, call every minut
 }
 
 function countDown() {
     if (Number(sec.value) || Number(min.value) || Number(hours.value)) {
-
-        let sum1 = Number(sec.value) ? sec.value : 0;
-        let sum2 = Number(min.value) ? (min.value * 60) : 0;
-        let sum3 = Number(hours.value) ? (sec.value * 3600) : 0;
-        const mmObj = window.matchMedia("(max-width: 660px)");
-        mmObj.matches ? document.getElementById("line").style.height = (((sum1 + sum2 + sum3) / (sum)) * 0.8) + "%" : document.getElementById("line").style.width = (((sum1 + sum2 + sum3) / (sum)) * 0.8) + "%";
-        hours.value = (hours.value === "hh" || hours.value == 0) ? "00" : Number(hours.value);
-        min.value = (min.value === "mm" || min.value == 0) ? "00" : Number(min.value);
-        sec.value = (sec.value === "sec" || sec.value == 0) ? "00" : Number(sec.value);
-        hours.value = (hours.value < 10 && hours.value > 0) ? "0" + hours.value : hours.value;
-        min.value = (min.value < 10 && min.value > 0) ? "0" + min.value : min.value;
-        sec.value = (sec.value < 10 && sec.value > 0) ? "0" + sec.value : sec.value;
+        // change the text value in the input field to the right value or to '00' if there is no value
+        sum1 = Number(sec.value) ? sec.value : 0;
+        sum2 = Number(min.value) ? (min.value * 60) : 0;
+        sum3 = Number(hours.value) ? (sec.value * 3600) : 0;
+        hours.value = (hours.value === "hh" || hours.value == 0) ? "00" : hours.value < 10 ? "0" + hours.value : hours.value;
+        min.value = (min.value === "mm" || min.value == 0) ? "00" : min.value < 10 ? "0" + min.value : min.value;
+        sec.value = (sec.value === "sec" || sec.value == 0) ? "00" : sec.value < 10 ? "0" + sec.value : sec.value;
+        // change the length of the progrress line 
+        linesize();
         sec.value--;
         console.log(hours.value + min.value + sec.value);
         console.log(sum);
@@ -41,20 +39,27 @@ function countDown() {
                 sec.value = 59;
             }
         }
-    } else {
-        document.getElementById("line").style.width = "0%";
-        setTimeout(function () {
-            console.log("kkkkkkk");
+    } else { // if sec + min + hours == 0
+        line.style.width = "0%";
+        setTimeout(function () { // return to the initial style
             hours.value = "hh";
             hours.style.color = "rgba(0, 0, 0, 0.55)";
             min.value = "mm";
             min.style.color = "rgba(0, 0, 0, 0.55)";
             sec.value = "sec";
             sec.style.color = "rgba(0, 0, 0, 0.55)";
-            document.getElementById("line").style.width = "80%";
+            line.classList.remove("smooth");
+            line.style.width = "80%"; // change the line to the initial size 
+            line.style.transform = "scale(1)";
         }, 1000);
         clearInterval(lol);
     }
+}
+
+function linesize() {
+    line.classList.add("smooth");
+    const mmObj = window.matchMedia("(max-width: 660px)"); // media quary, to change the line horizotally in web and verticaly in mobile 
+    mmObj.matches ? line.style.transform = `scaleY(${(((sum1 + sum2 + sum3) / (sum)) / 100)})` : line.style.transform = `scaleX(${(((sum1 + sum2 + sum3) / (sum)) / 100)})`;
 }
 
 document.getElementById("min").onblur = function blur() {
