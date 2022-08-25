@@ -97,17 +97,27 @@ input:invalid {
     transform: scale(.96);
 }
 
-#line {
+#linediv {
     height: 5vh;
     width: 80%;
-    background-color: red;
-    border-radius: 8px;
+    position: relative;
     margin-top: 10vh;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid rgb(33, 33, 33);
 }
 
-.smooth {
-    transition: all 1s linear;
+#line {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #e76f51;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
 }
+
 
 @media screen and (max-width: 660px) {
     #frame {
@@ -118,16 +128,30 @@ input:invalid {
         order: -1;
     }
 
-    #linediv {
-        height: 85vh;
+    #outdivline {
         width: 20vw;
+    }
+
+    #linediv {
+        height: 77vh;
+        width: 10vw;
         order: -1;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        border: 1px solid rgb(33, 33, 33);
+        margin-top: 0;
     }
 
     #line {
-        height: 90%;
+        position: absolute;
+        background-color: #e76f51;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: inherit;
+        height: 100%;
         width: 10vw;
-        margin-top: 0;
     }
 
     body {
