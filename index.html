@@ -12,9 +12,12 @@
 
 <body>
     <div id="frame" class="centeredFlex">
-        <input type="text" id="hours" onfocus="this.value ='' " class="element" pattern="^(\d|\d\d|hh)$" value="hh">
-        <input type="text" id="min" onfocus="this.value ='' " class="element" pattern="^(\d|\d\d|mm)$" value="mm">
-        <input type="text" id="seco" onfocus="this.value ='' " class="element" pattern="^(\d|\d\d|sec)$" value="sec">
+        <input type="text" id="hours" inputmode="numeric" onfocus="this.value ='' " class="element"
+            pattern="^(\d|\d\d|hh)$" value="hh">
+        <input type="text" id="min" inputmode="numeric" onfocus="this.value ='' " class="element"
+            pattern="^(\d|\d\d|mm)$" value="mm">
+        <input type="text" id="seco" inputmode="numeric" onfocus="this.value ='' " class="element"
+            pattern="^(\d|\d\d|sec)$" value="sec">
     </div>
     <div id="subdiv" class="centeredFlex">
         <button id="sub" type="submit" onclick="timer()">submit</button>

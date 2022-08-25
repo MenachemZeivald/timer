@@ -10,6 +10,7 @@ function timer() {
     sum2 = Number(min.value) ? (min.value * 60) : 0;
     sum3 = Number(hours.value) ? (sec.value * 3600) : 0;
     sum = sum1 + sum2 + sum3;
+    clearInterval(lol);
     lol = setInterval(countDown, 1000);
 }
 
@@ -19,9 +20,6 @@ function countDown() {
         let sum1 = Number(sec.value) ? sec.value : 0;
         let sum2 = Number(min.value) ? (min.value * 60) : 0;
         let sum3 = Number(hours.value) ? (sec.value * 3600) : 0;
-
-        //mmObj.addListener(myFunction)
-
         const mmObj = window.matchMedia("(max-width: 660px)");
         mmObj.matches ? document.getElementById("line").style.height = (((sum1 + sum2 + sum3) / (sum)) * 0.8) + "%" : document.getElementById("line").style.width = (((sum1 + sum2 + sum3) / (sum)) * 0.8) + "%";
         hours.value = (hours.value === "hh" || hours.value == 0) ? "00" : Number(hours.value);
