@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+input {
+    font-size: 13vh;
+    width: 30vh;
+    height: 25vh;
+    text-align: center;
+}
+
+.element {
+    outline: 2px;
+    margin: 1px;
+    border-radius: 8px;
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.element:focus {
+    color: black;
+}
+
+input:focus {
+    outline: none;
+}
+
+input:invalid {
+    border: 2px solid red;
+    animation-name: shake;
+    animation-duration: .3s;
+}
+
+@keyframes shake {
+    25% {
+        transform: translateX(4px);
+    }
+
+    50% {
+        transform: translateX(-4px);
+    }
+
+    75% {
+        transform: translateX(4px);
+    }
+}
+
+.centeredFlex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#frame {
+    height: 50vh;
+    width: 100vw;
+}
+
+#sub {
+    background-color: #FFFFFF;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #222222;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    padding: 13px 23px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    touch-action: manipulation;
+    transition: box-shadow .2s, -ms-transform .1s, -webkit-transform .1s, transform .1s;
+    user-select: none;
+    -webkit-user-select: none;
+    width: auto;
+}
+
+*:focus-visible,
+#sub:hover,
+.element:hover {
+    box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+    transition: box-shadow .2s;
+}
+
+#sub:active {
+    background-color: #F7F7F7;
+    border-color: #000000;
+    transform: scale(.96);
+}
+
+#line {
+    height: 5vh;
+    width: 80%;
+    background-color: red;
+    border-radius: 1vh;
+    margin-top: 10vh;
+}
+
+@media screen and (max-width: 660px) {
+    #frame {
+        height: 85vh;
+        width: 80vw;
+        flex-direction: column;
+        align-items: flex-end;
+        order: -1;
+    }
+
+    #linediv {
+        height: 85vh;
+        width: 20vw;
+        order: -1;
+    }
+
+    #line {
+        height: 90%;
+        width: 10vw;
+        margin-top: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        flex-wrap: wrap;
+    }
+
+    #subdiv {
+        width: 100vw;
+        order: 1;
+    }
+
+}
